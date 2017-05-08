@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Task;
 
 class HomeController extends Controller
 {
@@ -17,12 +20,23 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application main page.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function main()
     {
-        return view('home');
+        return view('main');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+      return view('home');
     }
 }
