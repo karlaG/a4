@@ -45,13 +45,11 @@ class TaskController extends Controller
     /**
       * Display all tasks.
       *
-      * @param  Request  $request
-      * @return Response
+      * @return View
       */
-     public function displayAll(Request $request)
+     public function displayAll()
      {
-         $task = new Task();
-         $tasks = $task::all();
+         $tasks = Task::all();
 
          return view('home')->with([
            'tasks' => $tasks,
@@ -62,24 +60,53 @@ class TaskController extends Controller
        * Edit a task.
        *
        * @param  Request  $request
-       * @return Response
+       * @return View
        */
       public function edit(Request $request)
       {
-          $task = new Task();
-          return redirect('/home');
+          $task = Task::find($request->id);
+
+          return view('edit')->with([
+              'task' => $task->task,
+              'dueDate' => $task->dueDate,
+              'complete' => $task->complete,
+              'id' => $task->id,
+          ]);
+      }
+
+      /**
+        * Edit a task.
+        *
+        * @param  Request  $request
+        * @return Response
+        */
+      public function saveEdit(Request $request)
+      {
+        $this->validate($request, [
+          'task' => 'required|max:140',
+          'dueDate' => 'required|date',
+        ]);
+
+        $task = Task::find($request->id);
+
+        $task->task = $request->task;
+        $task->dueDate = $request->dueDate;
+        //$task->complete = $request->complete;
+
+        $task->save();
+        return redirect('/home');
       }
 
     /**
      * Destroy a task.
      *
      * @param  Request  $request
-     * @param  Task  $task
      * @return Response
      */
-    public function destroy(Request $request, Task $task)
+    public function destroy(Request $request)
     {
-        $this->authorize('destroy', $task);
+        $task = new Task();
+        $task = $task::find($request->id);
         $task->delete();
         return redirect('/home');
     }
