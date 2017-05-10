@@ -12,7 +12,7 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        $tags = ['work', 'home', 'errands', 'kids', 'friends', 'family,' 'urgent'];
+        $tags = ['work', 'home', 'errands', 'kids', 'friends', 'family', 'urgent'];
 
         foreach($tags as $tagName) {
             $tag = new Tag();

@@ -18,8 +18,8 @@ class CreateTagTaskTable extends Migration
             $table->timestamps();
             $table->integer('tag_id')->unsigned();
             $table->integer('task_id')->unsigned();
-            $table->foreign('tag_id')->references('id')->on('tasks');
-            $table->foreign('task_id')->references('id')->on('tags');
+            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('task_id')->references('id')->on('tasks');
         });
     }
 
