@@ -35,7 +35,13 @@ class TaskController extends Controller
 
         $task->task = $request->task;
         $task->dueDate = $request->dueDate;
-        $task->complete = $request->complete;
+
+        if ($request->complete == null) {
+            $task->complete = 1;
+        }
+        else {
+            $task->complete = 0;
+        }
 
         $task->save();
 
@@ -91,7 +97,13 @@ class TaskController extends Controller
 
         $task->task = $request->task;
         $task->dueDate = $request->dueDate;
-        //$task->complete = $request->complete;
+        
+        if ($request->complete == null) {
+            $task->complete = 1;
+        }
+        else {
+            $task->complete = 0;
+        }
 
         $task->save();
         return redirect('/home');
@@ -105,8 +117,7 @@ class TaskController extends Controller
      */
     public function destroy(Request $request)
     {
-        $task = new Task();
-        $task = $task::find($request->id);
+        $task = Task::find($request->id);
         $task->delete();
         return redirect('/home');
     }

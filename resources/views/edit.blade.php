@@ -20,7 +20,7 @@
                 <textarea rows="5" name="task" class="form-control" required>{{ $task }}</textarea>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" name="complete" value="1">Complete?</label>
+                <label><input type="checkbox" name="complete" checked="{{ $complete }}">Complete?</label>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-default">Edit Task</button>
