@@ -22,7 +22,7 @@
               <div class="checkbox">
                 <label><input type="checkbox" name="complete" checked="{{ $complete }}">Complete?</label>
               </div>
-              <label>Tags:&nbsp;</label>
+              <label>Tags:</label>
               @foreach($tagsForCheckboxes as $id => $name)
                   <input type="checkbox" value="{{ $id }}" name="tags[]" id="tag_{{ $id }}"
                   {{ in_array($name, $tagsForThisTask) ? "CHECKED" : "" }}>
