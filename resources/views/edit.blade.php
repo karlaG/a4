@@ -25,7 +25,7 @@
               <label>Tags:&nbsp;</label>
               @foreach($tagsForCheckboxes as $id => $name)
                   <input type="checkbox" value="{{ $id }}" name="tags[]" id="tag_{{ $id }}"
-                  {{ in_array($name, $tagsForThisTask) ? "CHECKED" : "" }>
+                  {{ in_array($name, $tagsForThisTask) ? "CHECKED" : "" }}>
                   <label for='tag_{{ $id }}'>{{ $name }}</label>
               @endforeach
               <div class="form-group">
