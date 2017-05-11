@@ -31,7 +31,7 @@ class TaskController extends Controller
           'task' => 'required|max:140',
           'dueDate' => 'required|date',
         ]);
-dd($request);
+
         $task = new Task;
 
         $task->task = $request->task;
@@ -45,15 +45,10 @@ dd($request);
             $task->complete = 0;
         }
 
-        if ($request->tags) {
-            $tags = $request->tags;
-        }
-        else {
-            $tags = [];
-        }
+        $task->save();
 
+        $tags = ($request->tags) ?: [];
         $task->tags()->sync($tags);
-
         $task->save();
 
         return redirect('/home');
@@ -74,7 +69,7 @@ dd($request);
         foreach($task->tags as $tag) {
             $tagsForThisTask[] = $tag->name;
         }
-
+        
         return view('edit')->with([
             'task' => $task->task,
             'dueDate' => $task->dueDate,
@@ -111,13 +106,7 @@ dd($request);
           $task->complete = 0;
       }
 
-      if ($request->tags) {
-          $tags = $request->tags;
-      }
-      else {
-          $tags = [];
-      }
-
+      $tags = ($request->tags) ?: [];
       $task->tags()->sync($tags);
       $task->save();
 
@@ -133,7 +122,7 @@ dd($request);
     public function destroy(Request $request)
     {
         $task = Task::find($request->id);
-        //$task->tags()->detach;
+        $task->tags()->detach();
         $task->delete();
         return redirect('/home');
     }

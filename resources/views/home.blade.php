@@ -66,6 +66,11 @@
                       <td>
                         <a href="/edit/{{ $task->id }}"><button type="button" class="btn btn-default">Edit</button></a>
                       </td>
+                      <td>
+                        @foreach($task->tags as $tag)
+                          {{ $tag->name }}
+                        @endforeach
+                      </td>
                       <!-- Task Delete Button -->
                       <td>
                         <form action="/delete" method="POST">
