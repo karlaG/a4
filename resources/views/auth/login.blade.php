@@ -13,7 +13,7 @@
                       organized into simple one to do list. </p>
                     <p> The good news is, that's what we're here for! </p>
                     <br>
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
