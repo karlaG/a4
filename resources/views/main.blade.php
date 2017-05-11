@@ -13,8 +13,7 @@
                     organized into simple one to do list. </p>
                   <p> The good news is, that's what we're here for! </p>
                   <br>
-                  <p> Login or register to get started. </p>
-
+                  <p><a href="/home">Let's get started</a>.</p>
                 </div>
             </div>
         </div>

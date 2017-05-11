@@ -22,6 +22,11 @@
               <div class="checkbox">
                 <label><input type="checkbox" name="complete">Complete?</label>
               </div>
+              <label>Tags:&nbsp;</label>
+              @foreach($tagsForCheckboxes as $id => $name)
+                  <input type="checkbox" value="{{ $id }}" name="tags[]" id="tag_{{ $id }}">
+                  <label for='tag_{{ $id }}'>{{ $name }}</label>
+              @endforeach
               <div class="form-group">
                 <button type="submit" class="btn btn-default">Add Task</button>
               </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Task;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -20,23 +21,38 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application main page.
+     * Show the landing page.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return View
      */
     public function main()
     {
-        return view('main');
+        return view("main");
     }
 
     /**
      * Show the application dashboard.
      *
      * @param  Request  $request
-     * @return Response
+     * @return View
      */
     public function index(Request $request)
     {
-      return view('home');
+      $user = $request->user();
+
+      if($user) {
+        $tasks = Task::where('user_id', '=', $user->id)->get();
+
+        $tagsForCheckboxes = Tag::getTagsForCheckboxes();
+
+        return view('home')->with([
+          'tasks' => $tasks,
+          'tagsForCheckboxes' => $tagsForCheckboxes,
+        ]);
+      }
+      else {
+         $tasks = [];
+      }
     }
 }
